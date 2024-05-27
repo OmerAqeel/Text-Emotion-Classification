@@ -14,11 +14,8 @@ The repository is organized as follows:
 - `src/`: Contains Python scripts for data preprocessing, model training, evaluation, and utility functions.
 - `notebooks/`: Contains Jupyter notebooks for exploratory data analysis and experimentation.
 - `tests/`: Contains unit tests for various components of the project.
-- `app/`: Placeholder directory for potential deployment scripts or files.
 - `README.md`: You're reading it right now!
 - `requirements.txt`: Lists the project dependencies.
-- `LICENSE`: License information for the project.
-- `.gitignore`: Specifies intentionally untracked files to ignore.
 
 ## Usage
 
@@ -31,6 +28,3 @@ The repository is organized as follows:
 
 Contributions to this project are welcome! If you find any issues or have ideas for improvements, please feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
