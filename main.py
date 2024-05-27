@@ -1,10 +1,10 @@
-import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
-import numpy as np  # linear algebra
-import tensorflow as tf  # this is the deep learning library we are using
-from tensorflow.keras.preprocessing.text import Tokenizer  # this module is used to tokenize the text data into a format that can be used by the neural network
-from tensorflow.keras.preprocessing.sequence import pad_sequences  # this module is used to pad the sequences so they are all the same size
-from sklearn.preprocessing import LabelEncoder  # this module is used to convert the labels into a format that can be used by the neural network
-from sklearn.model_selection import train_test_split  # this module is used to split the data into training and testing data
+import pandas as pd 
+import numpy as np 
+import tensorflow as tf 
+from tensorflow.keras.preprocessing.text import Tokenizer  # to tokenize the text data into a format that can be used by the neural network
+from tensorflow.keras.preprocessing.sequence import pad_sequences  # to pad the sequences so they are all the same size
+from sklearn.preprocessing import LabelEncoder  # to convert the labels into a format that can be used by the neural network
+from sklearn.model_selection import train_test_split  # to split the data into training and testing data
 from tensorflow.keras.models import Sequential  # this is the type of neural network we will be using
 from tensorflow.keras.layers import Embedding, Flatten, Dense  # these are the layers we will be using in our neural network
 
@@ -27,5 +27,18 @@ padded_sequences = pad_sequences(sequences, maxlen=max_length) # pad the sequenc
 # Encode the string labels into integers
 encoder = LabelEncoder() # create the encoder
 labels = encoder.fit_transform(labels) # fit the encoder on the labels
+
+one_hot_labels = tf.keras.utils.to_categorical(labels) # convert the labels to one hot encoding
+
+# Split the data into training and testing data
+# padded sequence is the input data
+# one_hot_labels is the array of labels corresponding to the input data, which will also be split into training and testing sets.
+
+X_train, X_test, y_train, y_test = train_test_split(padded_sequences, one_hot_labels, test_size=0.2, random_state=42) # split the data
+
+# Define the model
+model = Sequential() # create the model
+model.add(Embedding(len(tokenizer.word_index)+1, 32, input_length=max_length)) # add the embedding layer
+
 
 
