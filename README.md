@@ -11,6 +11,7 @@ Text emotion classification is an essential task in natural language processing 
 The repository is organized as follows:
 
 - `dataset/`: Contains raw data files.
+- `main/`: Currently the main script which is being used to do all the functions (data preprocessing, model training etc.)
 - `src/`: Contains Python scripts for data preprocessing, model training, evaluation, and utility functions.
 - `notebooks/`: Contains Jupyter notebooks for exploratory data analysis and experimentation.
 - `tests/`: Contains unit tests for various components of the project.
