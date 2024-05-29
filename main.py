@@ -45,6 +45,15 @@ model.add(Dense(units=128, activation='relu')) # add the dense layer
 model.add(Dense(units=len(one_hot_labels[0]), activation='softmax')) # add the output layer
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']) # compile the model
-model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test)) # fit the model
+# model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test)) # fit the model
 
 
+input_text = input("Enter the text: ")  # get the input text
+
+
+# Preprocess the input text
+input_sequence = tokenizer.texts_to_sequences([input_text]) # convert the text to a sequence
+padded_input_sequence = pad_sequences(input_sequence, maxlen=max_length) # pad the sequence
+prediction = model.predict(padded_input_sequence) # make a prediction
+prediction = encoder.inverse_transform([np.argmax(prediction[0])]) # convert the prediction to a label
+print("The emotion is: ", prediction) # print the prediction
