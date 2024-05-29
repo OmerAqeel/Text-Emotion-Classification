@@ -40,5 +40,11 @@ X_train, X_test, y_train, y_test = train_test_split(padded_sequences, one_hot_la
 model = Sequential() # create the model
 model.add(Embedding(len(tokenizer.word_index)+1, 32, input_length=max_length)) # add the embedding layer
 
+model.add(Flatten()) # add the flatten layer
+model.add(Dense(units=128, activation='relu')) # add the dense layer
+model.add(Dense(units=len(one_hot_labels[0]), activation='softmax')) # add the output layer
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']) # compile the model
+model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test)) # fit the model
 
 
